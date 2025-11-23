@@ -6,9 +6,6 @@ public interface IAgendamentosDAOImpl {
     // Inserir agendamento
     int inserirAgendamento(Agendamentos agendamento);
 
-    // Validar horário solicitado
-    boolean solicitaHorario(String Data_Hora_Inicio, String Data_Hora_Fim, int id_ambiente);
-
     // Cancelar agendamento
     int cancelarAgendamento(Agendamentos agendamento);
 

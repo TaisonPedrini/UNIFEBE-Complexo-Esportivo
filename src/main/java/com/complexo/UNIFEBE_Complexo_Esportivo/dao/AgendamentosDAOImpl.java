@@ -60,52 +60,6 @@ public class AgendamentosDAOImpl implements IAgendamentosDAOImpl {
         return linhasAfetadas;
     }
 
-    // Validar horário solicitado
-    @Override
-    public boolean solicitaHorario(String Data_Hora_Inicio, String Data_Hora_Fim, int id_ambiente) {
-
-        // Horários solicitados
-        LocalDateTime inicio_solicitado = LocalDateTime.parse(Data_Hora_Inicio, formatter);
-        LocalDateTime fim_solicitado = LocalDateTime.parse(Data_Hora_Fim, formatter);
-
-        // Disponibilidade
-        boolean status = false;
-
-        if (inicio_solicitado.isBefore(LocalDateTime.now())) { // Valida se o horário solicitado é posterior a data atual
-            return status;
-        } else if (fim_solicitado.isBefore(inicio_solicitado)) { // Valida se o horário de fim é posterior ao horário de início
-            return status;
-        }
-
-        // Consulta todos os agendamentos futuros no banco referentes aquele ambiente
-        ArrayList<Agendamentos> lista = this.consultarAgendamentosAmbienteFuturos(id_ambiente);
-
-        if (!lista.isEmpty()) {
-            for (int i = 0; i < lista.size(); i++) {
-                Agendamentos agendamento = lista.get(i);
-
-                // Dados dos agendamentos já agendados
-                LocalDateTime inicio = LocalDateTime.parse(agendamento.getData_Hora_Inicio(), formatter);
-                LocalDateTime fim = LocalDateTime.parse(agendamento.getData_Hora_Fim(), formatter);
-
-                if (agendamento.getStatus_agendamento() != 'I') {
-                    if (inicio_solicitado.isBefore(inicio) || fim_solicitado.isBefore(inicio)) {
-                        status = true;
-                    } else if (inicio_solicitado.isAfter(fim)) {
-                        status = true;
-                    } else {
-                        status = false;
-                    }
-                }
-            }
-        } else {
-            // Valida o insert se nenhum registro for encontrado
-            return true;
-        }
-        return status;
-    }
-
-
     // Cancelar agendamento
     @Override
     public int cancelarAgendamento(Agendamentos agendamento) {
