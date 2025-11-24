@@ -11,31 +11,39 @@ import java.util.ArrayList;
 @RequestMapping("/api/ambientes")
 @CrossOrigin(origins = "*")
 public class AmbientesController {
+
     private final AmbientesService service;
-    public AmbientesController(AmbientesService service) { this.service = service; }
+
+    public AmbientesController(AmbientesService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public ArrayList<Ambientes> listar() { return service.listar(); }
+    public ArrayList<Ambientes> listar() {
+        return service.listar();
+    }
 
     @GetMapping("/nome/{nome}")
-    public ArrayList<Ambientes> buscarPorNome(@PathVariable String nome) { return service.buscarPorNome(nome); }
+    public ArrayList<Ambientes> buscarPorNome(@PathVariable String nome) {
+        return service.buscarPorNome(nome);
+    }
 
     @PostMapping
     public ResponseEntity<String> criar(@RequestBody Ambientes ambiente) {
         int res = service.inserir(ambiente);
-        return res>0 ? ResponseEntity.ok("OK") : ResponseEntity.status(500).body("Erro");
+        return res > 0 ? ResponseEntity.ok("OK") : ResponseEntity.status(500).body("Erro");
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> atualizar(@PathVariable int id, @RequestBody Ambientes ambiente) {
         ambiente.setId_AMBIENTES(id);
         int res = service.atualizar(ambiente);
-        return res>0 ? ResponseEntity.ok("OK") : ResponseEntity.status(404).body("Não encontrado/erro");
+        return res > 0 ? ResponseEntity.ok("OK") : ResponseEntity.status(404).body("Não encontrado/erro");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> remover(@PathVariable int id) {
         int res = service.remover(id);
-        return res>0 ? ResponseEntity.ok("OK") : ResponseEntity.status(404).body("Não encontrado/erro");
+        return res > 0 ? ResponseEntity.ok("OK") : ResponseEntity.status(404).body("Não encontrado/erro");
     }
 }

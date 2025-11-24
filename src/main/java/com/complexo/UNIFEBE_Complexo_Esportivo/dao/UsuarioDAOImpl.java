@@ -30,11 +30,11 @@ public class UsuarioDAOImpl implements IUsuarioDAOImpl {
 
         try {
             String SQL = "INSERT INTO sisagenda.usuario (id_USUARIO, Nome, Matricula, Senha, Tipo) " +
-                         "VALUES (sisagenda.increment_usuario.nextval, '" +
-                                  usuario.getNome() + "', " +
-                                  usuario.getMatricula() + ", '" +
-                                  usuario.getSenha() + "', '" +
-                                  usuario.getTipo() + "')";
+                    "VALUES (sisagenda.increment_usuario.nextval, '" +
+                    usuario.getNome() + "', " +
+                    usuario.getMatricula() + ", '" +
+                    usuario.getSenha() + "', '" +
+                    usuario.getTipo() + "')";
             linhasAfetadas = this.s.executeUpdate(SQL);
             System.out.println("Usuário Inserido com sucesso: " + linhasAfetadas + " linha(s)");
         } catch (Exception e) {
@@ -43,6 +43,7 @@ public class UsuarioDAOImpl implements IUsuarioDAOImpl {
         }
         return linhasAfetadas;
     }
+
     // Remover um usuário por matrícula
     @Override
     public int removerUsuarioPorMaticula(Usuario usuario) {
@@ -50,7 +51,7 @@ public class UsuarioDAOImpl implements IUsuarioDAOImpl {
 
         try {
             String SQL = "DELETE sisagenda.usuario " +
-                         "WHERE matricula = " + usuario.getMatricula();
+                    "WHERE matricula = " + usuario.getMatricula();
             linhasAfetadas = this.s.executeUpdate(SQL);
             System.out.println("Usuário removido com sucesso: " + linhasAfetadas + " linha(s)");
         } catch (Exception e) {

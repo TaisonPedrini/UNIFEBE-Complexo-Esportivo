@@ -8,19 +8,30 @@ import java.util.ArrayList;
 
 @Service
 public class UsuarioService {
+
     private final UsuarioDAOImpl dao = new UsuarioDAOImpl();
 
-    public int inserir(Usuario usuario) { return dao.inserirUsuario(usuario); }
+    public int inserir(Usuario usuario) {
+        return dao.inserirUsuario(usuario);
+    }
+
     public int removerPorMatricula(int matricula) {
-        Usuario u = new Usuario(); u.setMatricula(matricula);
+        Usuario u = new Usuario();
+        u.setMatricula(matricula);
         return dao.removerUsuarioPorMaticula(u);
     }
-    public Usuario buscarPorMatricula(int matricula) { return dao.buscarUsuarioPorMatricula(matricula); }
-    public ArrayList<Usuario> buscarPorNome(String nome) { return dao.buscarUsuarioPorNome(nome); }
-    public ArrayList<Usuario> listarTodos() { return dao.selectUsuarios(); }
 
-    // novo:
+    public Usuario buscarPorMatricula(int matricula) {
+        return dao.buscarUsuarioPorMatricula(matricula);
+    }
 
+    public ArrayList<Usuario> buscarPorNome(String nome) {
+        return dao.buscarUsuarioPorNome(nome);
+    }
+
+    public ArrayList<Usuario> listarTodos() {
+        return dao.selectUsuarios();
+    }
 
     public ArrayList<Usuario> listarPorTipo(char tipo) {
         ArrayList<Usuario> todos = dao.selectUsuarios();

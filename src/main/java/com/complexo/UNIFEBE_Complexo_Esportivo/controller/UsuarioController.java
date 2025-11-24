@@ -11,14 +11,22 @@ import java.util.ArrayList;
 @RequestMapping("/api/usuarios")
 @CrossOrigin(origins = "*")
 public class UsuarioController {
+
     private final UsuarioService service;
-    public UsuarioController(UsuarioService service) { this.service = service; }
+
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public ArrayList<Usuario> listar() { return service.listarTodos(); }
+    public ArrayList<Usuario> listar() {
+        return service.listarTodos();
+    }
 
     @GetMapping("/{tipo}")
-    public ArrayList<Usuario> listarPorTipo(@PathVariable char tipo) { return service.listarPorTipo(tipo); }
+    public ArrayList<Usuario> listarPorTipo(@PathVariable char tipo) {
+        return service.listarPorTipo(tipo);
+    }
 
     @GetMapping("/{matricula}")
     public ResponseEntity<Usuario> buscar(@PathVariable int matricula) {
@@ -27,7 +35,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/nome/{nome}")
-    public ArrayList<Usuario> buscarPorNome(@PathVariable String nome) { return service.buscarPorNome(nome); }
+    public ArrayList<Usuario> buscarPorNome(@PathVariable String nome) {
+        return service.buscarPorNome(nome);
+    }
 
     @PostMapping
     public ResponseEntity<String> criar(@RequestBody Usuario usuario) {

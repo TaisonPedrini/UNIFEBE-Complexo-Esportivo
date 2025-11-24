@@ -16,7 +16,7 @@ public class ConexaoDB {
             this.Conn = DriverManager.getConnection("jdbc:oracle:thin:" + user + "/" + senha + "@" + IP + ":1521:" + database);
             this.s = this.Conn.createStatement();
             //System.out.println("Conectado ao banco de dados: " + database);
-        }catch (SQLException | ClassNotFoundException e){
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

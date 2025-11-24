@@ -2,7 +2,6 @@ package com.complexo.UNIFEBE_Complexo_Esportivo.dao;
 
 public class Agendamentos {
 
-    // Atributos
     private int ID_AGENDAMENTOS;
     private int AMBIENTE_ID_AMBIENTES;
     private int USUARIO_ID_USUARIO;
